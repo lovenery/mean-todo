@@ -21,4 +21,10 @@ export class TodoService {
 		return this.http.delete('/api/todo/' + id)
 			.map(res => res.json());
 	}
+	updateStatus(todo: any) { // obj
+		let headers = new Headers();
+		headers.append('Content-Type', 'application/json');
+		return this.http.put('/api/todo/'+todo.id, JSON.stringify(todo), { headers: headers })
+			.map(res => res.json());
+	}
 }

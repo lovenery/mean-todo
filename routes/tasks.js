@@ -48,7 +48,7 @@ router.delete('/todo/:id', function (req, res, next) {
 })
 
 router.put('/todo/:id', function (req, res, next) {
-  let todo = req.bdoy
+  let todo = req.body
   let updateTodo = {}
 
   if (todo.isDone) {
@@ -64,7 +64,7 @@ router.put('/todo/:id', function (req, res, next) {
       "error": "Bad Data"
     })
   } else {
-    db.todos.remove({_id: mongojs.ObjectId(req.params.id)}, updateTodo, {}, function (err, todo) {
+    db.todos.update({_id: mongojs.ObjectId(req.params.id)}, updateTodo, {}, function (err, todo) {
       if (err) {
         res.send(err)
       }

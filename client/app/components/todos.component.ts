@@ -41,6 +41,18 @@ export class TodosComponent  {
 			}
 		});
 	}
+
+	updateStatus(todo: any) {
+		// console.log(todo.isDone); // obj
+		let _todo = {
+			id: todo._id,
+			title: todo.title,
+			isDone: !todo.isDone // new
+		};
+		this.todoService.updateStatus(_todo).subscribe(data => {
+			todo.isDone = !todo.isDone; // new
+		});
+	}
 }
 
 interface Todo {
